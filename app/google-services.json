@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "695214617699",
+    "project_id": "avatar-app-2ac1c",
+    "storage_bucket": "avatar-app-2ac1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695214617699:android:dc192bc253042b1cf07456",
+        "android_client_info": {
+          "package_name": "com.example.avatarwikiapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "695214617699-qrinsmfshob1tlklbcpakv99hjh41ftk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_7bdubDTpF4LD0QGrjvR8HOQ_p_zUS3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "695214617699-qrinsmfshob1tlklbcpakv99hjh41ftk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

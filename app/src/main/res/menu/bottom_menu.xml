@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item1"
+        android:icon="@drawable/ic_globe_1"
+        android:title="News"
+        android:orderInCategory="1"/>
+    <item
+        android:id="@+id/item2"
+        android:icon="@drawable/ic_map"
+        android:title="Map"
+        android:orderInCategory="2"/>
+    <item
+        android:id="@+id/item3"
+        android:icon="@drawable/ic_search"
+        android:title="Info"
+        android:orderInCategory="3"/>
+    <item
+        android:id="@+id/item4"
+        android:icon="@drawable/ic_cam"
+        android:title="Movies"
+        android:orderInCategory="4"/>
+    <item
+        android:id="@+id/item5"
+        android:icon="@drawable/ic_quote"
+        android:title="Quotes"
+        android:orderInCategory="5"/>
+</menu>
