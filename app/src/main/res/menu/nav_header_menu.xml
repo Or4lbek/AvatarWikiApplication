@@ -10,11 +10,11 @@
         android:icon="@drawable/ic_baseline_android_24"/>
     <item
         android:id="@+id/item3"
-        android:title="Item 1"
-        android:icon="@drawable/ic_baseline_android_24"/>
+        android:title="@string/about_me"
+        android:icon="@drawable/ic_user"/>
     <item
         android:id="@+id/item4"
         android:title="@string/log_out"
-        android:icon="@drawable/ic_baseline_android_24"/>
+        android:icon="@drawable/ic_logout"/>
 
 </menu>

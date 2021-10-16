@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 
-class Map : Fragment() {
+class MapFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -21,6 +21,6 @@ class Map : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance() = Map()
+        fun newInstance() = MapFragment()
     }
 }

@@ -20,12 +20,12 @@ import com.google.firebase.database.FirebaseDatabase
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
     // bissmiliah
     lateinit var binding:ActivityMainBinding //using view binding
-    private lateinit var mail:String
     lateinit var toggle:ActionBarDrawerToggle
-    private var USER_KEY:String = "User"
-    private lateinit var mDatabase: DatabaseReference
-    lateinit var tvUserName:TextView
 
+    private lateinit var mDatabase: DatabaseReference
+    private lateinit var mail:String
+
+    private val USER_KEY:String = "User"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,46 +33,51 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setTheme(R.style.Theme_AvatarWikiApplication)
         setContentView(binding.root)
         init()
+        changeHeaderContent()
+        binding.navView.setNavigationItemSelectedListener(this)
+    }
+
+    private fun init(){
+        // initialize database in firebase
+        mDatabase = FirebaseDatabase.getInstance().getReference(USER_KEY)
         // add toggle to Drawer layout
         toggle = ActionBarDrawerToggle(this, binding.drawerLayout,R.string.close, R.string.open )
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-//        var textHeader: TextView? = binding.navView.getHeaderView(R.id.textViewUserName) as TextView?
-//        textHeader!!.text = "Oralbek"
-//        tvUserName = findViewById(R.id.textViewUserNameHeader)
-//        tvUserName.setText("Oralbek")
-
-//        val appBarConfiguration = AppBarConfiguration(setOf<>())
-        val actionBar = supportActionBar
-        actionBar!!.title = "News"
-        binding.btnNavView.selectedItemId = R.id.item1
 
         // get intent to define mail address of user
-        var intent:Intent = getIntent()
+        val intent:Intent = intent
         mail = intent.getStringExtra("mail").toString()
-        changeHeaderContent()
 
+        initBtnNavView()
+    }
+
+    private fun initBtnNavView() {
+        val actionBar = supportActionBar
+        actionBar!!.title = "News"
         // define main fragment in home page
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.place_holder, News.newInstance()).commit()
+            .replace(R.id.place_holder, NewsFeedFragment.newInstance()).commit()
 
+        binding.btnNavView.background = null
+        binding.btnNavView.menu.getItem(2).isEnabled = false
         // click listener to bottom navigation view
-        binding.btnNavView.setOnItemSelectedListener{
+        binding.btnNavView.setOnItemSelectedListener{it->
             when(it.itemId){
                 R.id.item1->{
                     // change the action bar title
                     actionBar!!.title = "News"
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.place_holder, News.newInstance()).commit()
+                        .replace(R.id.place_holder, NewsFeedFragment.newInstance()).commit()
                 }
                 R.id.item2->{
                     // change the action bar title
                     actionBar!!.title = "Map"
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.place_holder, Map.newInstance()).commit()
+                        .replace(R.id.place_holder, MapFragment.newInstance()).commit()
 
                 }
                 R.id.item3->{
@@ -87,14 +92,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             true
         }
-
-        // drawer layout click
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.navView.setNavigationItemSelectedListener(this)
-
-
-
-
     }
 
     private fun changeHeaderContent() {
@@ -104,13 +102,43 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navUsername.text = mail
     }
 
-    fun init(){
-        // initialize database in firebase
-        mDatabase = FirebaseDatabase.getInstance().getReference(USER_KEY)
+    // add pencil btn to action bar
+    override fun onCreateOptionsMenu(menu: Menu) : Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_pencil, menu);
+        return true;
+    }
+    fun onClickWriteNew(mi: MenuItem) {
+        // handle click here
+        Toast.makeText(this, "do want to write some new?",Toast.LENGTH_SHORT).show()
+        buildDialogToMakeNewRecord()
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+    private fun buildDialogToMakeNewRecord() {
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.layout_dialog,null)
+        //alert dialog builder
 
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+            .setTitle(getString(R.string.new_record))
+            .setNegativeButton("cancel"){dialog,i->
+            }
+            .setPositiveButton("send"){dialog,i->
+                val alertDialog = dialog as AlertDialog
+                val editTextNewRecord: EditText? = alertDialog.findViewById<EditText>(R.id.editTextNewRecord)
+                //to save Customer data
+                saveCustomerRecord(mDatabase.key.toString(),mail,editTextNewRecord?.text.toString())
+            }
+        val mAlertDialog = mBuilder.show()
+    }
+
+    private fun saveCustomerRecord(customerId: String, customerMail: String, customerRecord: String) {
+        var newCustomerRecord:CustomerRecord = CustomerRecord(customerId,customerMail,customerRecord)
+        mDatabase.push().setValue(newCustomerRecord)
+    }
+
+    //drawer layout function
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.item4 ->
             {
@@ -124,63 +152,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         return true
     }
-
-
-    fun onClickLogOut() {
+    private fun onClickLogOut() {
         val newIntent:Intent = Intent(applicationContext, LoginActivity::class.java)
         newIntent.putExtra("time",1)
         startActivity(newIntent)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)){
             return true
         }
         return super.onOptionsItemSelected(item)
     }
-
-    override fun onCreateOptionsMenu(menu: Menu) : Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_movies, menu);
-        return true;
-    }
-
-
-    fun onClickWriteNew(mi: MenuItem) {
-        // handle click here
-        Toast.makeText(this, "do want to write some new?",Toast.LENGTH_SHORT).show()
-        openDialog()
-    }
-
-    fun openDialog() {
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.layout_dialog,null)
-        //alert dialog builder
-
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-            .setTitle(getString(R.string.new_record))
-            .setNegativeButton("cancel"){dialog,i->
-                Toast.makeText(this,"closed",Toast.LENGTH_SHORT).show()
-            }
-            .setPositiveButton("send"){dialog,i->
-                val alertDialog = dialog as AlertDialog
-                val editTextNews: EditText? = alertDialog.findViewById<EditText>(R.id.editTextNews)
-                val news:String = editTextNews?.text.toString()
-                Toast.makeText(this, "send clicked $news", Toast.LENGTH_SHORT).show()
-
-                //to save data
-                var id:String = mDatabase.key.toString()
-                var userMail:String = mail
-                var newRecord:String = news
-                var newUser:User = User(id,userMail,newRecord)
-
-                mDatabase.push().setValue(newUser)
-            }
-
-        val mAlertDialog = mBuilder.show()
-
-    }
-
 
 
 

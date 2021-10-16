@@ -26,7 +26,6 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
     </style>
-
     <style name="Button.White" parent="ThemeOverlay.AppCompat">
         <item name="colorAccent">@color/teal_200</item>
     </style>
