@@ -1,4 +1,4 @@
-package com.example.avatarwikiapplication
+package com.example.avatarwikiapplication.model
 
 data class CustomerRecord(
     val id:String ,

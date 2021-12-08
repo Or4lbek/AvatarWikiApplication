@@ -1,7 +1,6 @@
-package com.example.avatarwikiapplication
+package com.example.avatarwikiapplication.view
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -12,6 +11,7 @@ import android.view.View
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import com.example.avatarwikiapplication.R
 import com.example.avatarwikiapplication.databinding.ActivityLoginBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -19,6 +19,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.ktx.auth
+import java.util.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -30,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
 
     private var time:Int = 0
     private var probablyMail:String = "   "
-
+    private lateinit var signupDateTipa:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_AvatarWikiApplication)
@@ -67,7 +68,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkIsSessionExists(){
-        var currentUser = auth.currentUser
+        val currentUser = auth.currentUser
+        var signupDate = currentUser?.metadata?.creationTimestamp.toString()
+        signupDateTipa = signupDate.toString()
 //        updateUI(currentUser);
         if (currentUser != null){
             if (time == 1){
@@ -114,7 +117,10 @@ class LoginActivity : AppCompatActivity() {
     private fun makeIntentToMainActivity(customerMail: String) {
         intent = Intent(applicationContext,MainActivity::class.java)
         intent.putExtra("mail", customerMail)
+        intent.putExtra("date",signupDateTipa)
         startActivity(intent)
+        finish()
+
     }
 
     fun onClickButtonGoReg(view: android.view.View) {
@@ -124,6 +130,7 @@ class LoginActivity : AppCompatActivity() {
     private fun makeIntentToRegActivity() {
         intent = Intent(applicationContext,RegistrationActivity::class.java)
         startActivity(intent)
+
     }
 
     private fun addConditionEditTextPassword(){

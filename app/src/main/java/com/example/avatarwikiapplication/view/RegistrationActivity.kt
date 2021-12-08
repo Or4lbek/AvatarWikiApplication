@@ -1,12 +1,13 @@
-package com.example.avatarwikiapplication
+package com.example.avatarwikiapplication.view
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
+import com.example.avatarwikiapplication.R
 import com.example.avatarwikiapplication.databinding.ActivityRegistrationBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -14,7 +15,6 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import androidx.core.widget.doOnTextChanged
 import java.util.*
 
 
@@ -96,13 +96,13 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun makeIntentToLogActivity(customerMail: String) {
-        intent = Intent(applicationContext,LoginActivity::class.java)
+        intent = Intent(applicationContext, LoginActivity::class.java)
         intent.putExtra("mail", customerMail)
         startActivity(intent)
     }
 
     private fun makeIntentToMainActivity(customerMail: String) {
-        intent = Intent(applicationContext,MainActivity::class.java)
+        intent = Intent(applicationContext, MainActivity::class.java)
         intent.putExtra("mail", customerMail)
         startActivity(intent)
     }

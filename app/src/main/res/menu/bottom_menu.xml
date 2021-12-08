@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/item1"
+        android:id="@+id/newsFeedFragment2"
         android:icon="@drawable/ic_home_1"
         android:title="Home"
         android:orderInCategory="1"/>
     <item
-        android:id="@+id/item2"
+        android:id="@+id/mapFragment"
         android:icon="@drawable/ic_map"
         android:title="Map"
         android:orderInCategory="2"/>
@@ -20,7 +20,7 @@
         android:title="Info"
         android:orderInCategory="4"/>
     <item
-        android:id="@+id/item5"
+        android:id="@+id/quotesFragment"
         android:icon="@drawable/ic_quote"
         android:title="Quotes"
         android:orderInCategory="5"/>

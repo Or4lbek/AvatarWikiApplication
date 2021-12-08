@@ -13,22 +13,40 @@
         android:background="@android:color/transparent"
         >
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/coordinator"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-            <FrameLayout
-                android:id="@+id/place_holder"
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerView"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                class="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
-                android:paddingBottom="15dp"/>
+                app:defaultNavHost="true"
+                app:layout_constraintBottom_toTopOf="@+id/btnNavView"
+                app:layout_constraintEnd_toEndOf="@+id/btnAppBar"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:navGraph="@navigation/main_nav" />
 
             <com.google.android.material.bottomappbar.BottomAppBar
                 android:id="@+id/btnAppBar"
@@ -36,27 +54,27 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:background="@color/main_c"
+                app:fabCradleMargin="20dp"
+                app:fabCradleRoundedCornerRadius="20dp"
+                app:fabCradleVerticalOffset="10dp"
                 app:itemIconTint="@color/purple_500"
                 app:itemRippleColor="@color/purple_500"
-                app:itemTextColor="@color/purple_500"
-                app:fabCradleMargin="20dp"
-                app:fabCradleVerticalOffset="10dp"
-                app:fabCradleRoundedCornerRadius="20dp">
+                app:itemTextColor="@color/purple_500">
+
                 <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:id="@+id/btnNavView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:menu="@menu/bottom_menu"
                     android:layout_marginEnd="16dp"
                     android:background="@android:color/transparent"
-                    />
+                    app:menu="@menu/bottom_menu" />
             </com.google.android.material.bottomappbar.BottomAppBar>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_grid_main"
+                android:src="@drawable/ic_pencil"
                 app:layout_anchor="@id/btnAppBar"
                 tools:ignore="SpeakableTextPresentCheck">
 

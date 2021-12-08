@@ -6,32 +6,51 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.Toast
+import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.avatarwikiapplication.databinding.RecordItemBinding
+import com.example.avatarwikiapplication.model.CustomerRecord
 
 class RecordAdapter: RecyclerView.Adapter<RecordAdapter.RecordHolder>() {
 
     var records = ArrayList<CustomerRecord>()
     lateinit var mContext: Context
+    private lateinit var mListener : onItemClickListener
 
-    class RecordHolder(item: View):RecyclerView.ViewHolder(item) {
-        val binding = RecordItemBinding.bind(item)
-        fun bind(newRecord: CustomerRecord,context: Context) = with(binding){
+    interface onItemClickListener{
+
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(listener:onItemClickListener){
+        mListener = listener
+    }
+
+
+    class RecordHolder(item: View, listener: onItemClickListener):RecyclerView.ViewHolder(item) {
+            val binding = RecordItemBinding.bind(item)
+
+        init {
+            itemView.setOnClickListener{
+                listener.onItemClick(adapterPosition)
+            }
+        }
+        fun bind(newRecord: CustomerRecord, context: Context) = with(binding){
             textViewUserMail.text = newRecord.mail
             textViewRecord.text = newRecord.newRecord
 
-            itemView.setOnClickListener(){
-                Toast.makeText(context,"pressed ${textViewUserMail.text}",Toast.LENGTH_SHORT).show()
-            }
+//            itemView.setOnClickListener(){
+//                Toast.makeText(context,"pressed ${textViewUserMail.text}",Toast.LENGTH_SHORT).show()
+//            }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordHolder {
 //        TODO("Not yet implemented")
         val view = LayoutInflater.from(parent.context).inflate(R.layout.record_item, parent, false)
         mContext = parent.context
-        return RecordHolder(view)
+        return RecordHolder(view, mListener)
     }
 
     override fun onBindViewHolder(holder: RecordHolder, position: Int) {

@@ -31,4 +31,10 @@
     <string name="you_have_something_new">Что у вас нового?</string>
     <string name="new_record">Новая запись</string>
     <string name="about_me">about me</string>
+    <string name="sample_quote">Hope for the best, prepare for the worst</string>
+
+    <string-array name="localization_spinner">
+        <item>en</item>
+        <item>ru</item>
+    </string-array>
 </resources>
