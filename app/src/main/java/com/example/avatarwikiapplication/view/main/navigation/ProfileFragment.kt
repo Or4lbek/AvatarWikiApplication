@@ -1,19 +1,16 @@
-package com.example.avatarwikiapplication
+package com.example.avatarwikiapplication.view.main.navigation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.example.avatarwikiapplication.databinding.FragmentNewsBinding
+import androidx.fragment.app.Fragment
+import com.example.avatarwikiapplication.R
 import com.example.avatarwikiapplication.databinding.FragmentProfileBinding
-import com.example.avatarwikiapplication.databinding.FragmentWriteDataBinding
-import com.example.avatarwikiapplication.view.MainActivity
+import com.example.avatarwikiapplication.view.main.MainActivity
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
-    private var _binding: FragmentProfileBinding?= null
+    private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +23,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         _binding = FragmentProfileBinding.bind(view)
 
         val mailProfile = (activity as MainActivity).getUserMail().toString()
-        val userDate = (activity as MainActivity).getUserDate().toString()
-        binding?.textViewProfileMail?.text = mailProfile
-        binding?.textViewProfileRegistration?.text = userDate
+        binding.textViewProfileMail.text = mailProfile
+        (activity as MainActivity).hideBottomAppBar()
     }
 
     companion object {

@@ -2,7 +2,10 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/dancing_script_bold</item>
+        <item>@font/kanit_extrabold</item>
+        <item>@font/kanit_medium</item>
         <item>@font/la_belle_aurore</item>
+        <item>@font/roboto_medium</item>
         <item>@font/rubik</item>
         <item>@font/rubik_light</item>
     </array>

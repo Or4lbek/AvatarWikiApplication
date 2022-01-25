@@ -2,26 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/newsFeedFragment2"
-        android:icon="@drawable/ic_home_1"
-        android:title="Home"
-        android:orderInCategory="1"/>
+        android:icon="@drawable/ic_fire"
+        android:orderInCategory="1"
+        android:title="Home" />
     <item
-        android:id="@+id/mapFragment"
-        android:icon="@drawable/ic_map"
-        android:title="Map"
-        android:orderInCategory="2"/>
+        android:id="@+id/charactersFragment"
+        android:icon="@drawable/ic_air"
+        android:orderInCategory="2"
+        android:title="Characters" />
     <item
         android:id="@+id/item3"
-        android:title=""
-        android:orderInCategory="3"/>
+        android:orderInCategory="3"
+        android:title="" />
     <item
         android:id="@+id/item4"
-        android:icon="@drawable/ic_search"
-        android:title="Info"
-        android:orderInCategory="4"/>
+        android:icon="@drawable/ic_water"
+        android:orderInCategory="4"
+        android:title="Info" />
     <item
         android:id="@+id/quotesFragment"
-        android:icon="@drawable/ic_quote"
-        android:title="Quotes"
-        android:orderInCategory="5"/>
+        android:icon="@drawable/ic_earth"
+        android:orderInCategory="5"
+        android:title="Quotes" />
 </menu>

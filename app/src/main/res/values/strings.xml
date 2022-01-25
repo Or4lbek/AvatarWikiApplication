@@ -1,27 +1,34 @@
 <resources>
     <string name="app_name">Avatar Wiki Application</string>
-    <string name="login">Войти</string>
-    <string name="sigin">Зарегистрироваться</string>
-    <string name="logout">log out</string>
-    <string name="write">write</string>
+    <string name="login">Sign in</string>
+    <string name="sigin">Sign up</string>
+    <string name="logout">Log out</string>
+    <string name="write">Write</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="news">what we have new?</string>
-    <string name="lets_reg">Вы у нас впервые?</string>
-    <string name="regis_yet">Уже зарегистрировались?</string>
+    <string name="news">What we have new?</string>
+    <string name="lets_reg">firs time here?</string>
+    <!--    <string name="lets_reg">Вы у нас впервые?</string>-->
+    <string name="regis_yet">already registered?</string>
+    <!--    <string name="regis_yet">Уже зарегистрировались?</string>-->
     <string name="close">close</string>
     <string name="open">open</string>
-    <string name="log_out">выйти</string>
+    <string name="log_out">exit</string>
+    <!--    <string name="log_out">выйти</string>-->
     <string name="verif">Проверить вашу почту для подтверждения Email адреса </string>
     <string name="noverif">Проверить написание вашей почты  </string>
-    <string name="show_password">Показать пароль</string>
+    <string name="show_password">Show password</string>
+    <!--    <string name="show_password">Показать пароль</string>-->
     <string name="email">   email</string>
     <string name="password">  password</string>
 
     <!--    req for password edit text-->
-    <string name="need_more_8">ошибка: не менее 8 символов</string>
-    <string name="unValid">Ваш пароль не дейстивительный</string>
-    <string name="valid">Ваш пароль дейстивительный</string>
+    <string name="need_more_8">error: at least 8 symbols </string>
+    <!--    <string name="need_more_8">ошибка: не менее 8 символов</string>-->
+    <string name="unValid">Your password is not correct</string>
+    <!--    <string name="unValid">Ваш пароль не дейстивительный</string>-->
+    <string name="valid">Your password is correct</string>
+    <!--    <string name="valid">Ваш пароль дейстивительный</string>-->
 
     <!--    Toast messages-->
     <string name="user_sign_in_failed">ваш пароль или логин не действительный</string>
@@ -29,12 +36,47 @@
     <string name="user_sign_up_successful">регистрация пользователя прошла успешно</string>
     <string name="user_sign_up_failed">ошибка регистрации пользователя</string>
     <string name="you_have_something_new">Что у вас нового?</string>
-    <string name="new_record">Новая запись</string>
-    <string name="about_me">about me</string>
+    <string name="new_record">New record</string>
+    <!--    <string name="new_record">Новая запись</string>-->
+    <string name="about_me">About me</string>
     <string name="sample_quote">Hope for the best, prepare for the worst</string>
 
     <string-array name="localization_spinner">
         <item>en</item>
         <item>ru</item>
     </string-array>
+
+
+    <string name="birth_data">birthdate: </string>
+    <string name="name">Sapar Oralbek</string>
+    <string name="born">born: </string>
+    <string name="born_inf">West Kazakhstan Region, Uralsk</string>
+    <string name="birth_data_inf">5th November,2001</string>
+    <string name="nat_data">nationality: </string>
+    <string name="nat_data_inf">kazakh</string>
+    <string name="phone_data">phone: </string>
+    <string name="phone_data_inf">+7 700 745 69 60</string>
+    <string name="mail_data">email: </string>
+    <string name="mail_data_inf">theoralbeksapar@gmail.com</string>
+
+    <string name="edu">Education</string>
+    <string name="edu_per1">2019 - 2023</string>
+    <string name="edu_per2">2008 - 2019</string>
+    <string name="edu_sdu">B.Sc. in Information systems, Suleyman Demirel University (SDU), Almaty
+region, Kaskelen city.</string>
+    <string name="edu_school">Asan Taimanov Gymnasium school №34;, West Kazakhstan region, Uralsk city.</string>
+
+    <string name="skills">Technical skills</string>
+    <string name="skills_l">languages: </string>
+    <string name="skills_l_d">Kazakh, Russian(C1), English(B1), Turkish(A2) </string>
+    <string name="skills_p">programming languages:</string>
+    <string name="skills_p_d">Python, Java, PHP and Kotlin</string>
+    <string name="skills_d">databases: </string>
+    <string name="skills_d_d">MySQL, Microsoft SQL Server, Oracle Database</string>
+
+    <string name="user_image">user image</string>
+    <string name="image_for_shadow_effect">image for shadow effect</string>
+    <string name="naruto">Naruto</string>
+    <string name="logo">logo</string>
+
 </resources>

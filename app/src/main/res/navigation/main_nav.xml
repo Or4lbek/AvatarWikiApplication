@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/newsFeedFragment2"
-        android:name="com.example.avatarwikiapplication.view.NewsFeedFragment"
+        android:name="com.example.avatarwikiapplication.view.main.NewsFeedFragment"
         android:label="News"
         tools:layout="@layout/fragment_news">
         <action
@@ -22,9 +22,14 @@
     </fragment>
     <fragment
         android:id="@+id/charactersFragment"
-        android:name="com.example.avatarwikiapplication.view.CharactersFragment"
+        android:name="com.example.avatarwikiapplication.view.main.CharactersFragment"
         android:label="Characters"
-        tools:layout="@layout/fragment_characters" />
+        tools:layout="@layout/fragment_characters" >
+        <action
+            android:id="@+id/action_charactersFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
+
+    </fragment>
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.avatarwikiapplication.view.MapFragment"
@@ -32,7 +37,7 @@
         tools:layout="@layout/fragment_map" />
     <fragment
         android:id="@+id/quotesFragment"
-        android:name="com.example.avatarwikiapplication.view.QuotesFragment"
+        android:name="com.example.avatarwikiapplication.view.main.QuotesFragment"
         android:label="Quotes"
         tools:layout="@layout/fragment_quotes" />
     <fragment
@@ -46,30 +51,51 @@
     </fragment>
     <fragment
         android:id="@+id/writeDataFragment"
-        android:name="com.example.avatarwikiapplication.view.WriteDataFragment"
+        android:name="com.example.avatarwikiapplication.view.main.WriteDataFragment"
         android:label="Share with news"
         tools:layout="@layout/fragment_write_data" />
     <fragment
         android:id="@+id/aboutMeFragment"
-        android:name="com.example.avatarwikiapplication.view.AboutMeFragment"
-        android:label="fragment_about_me"
-        tools:layout="@layout/fragment_about_me" >
+        android:name="com.example.avatarwikiapplication.view.main.navigation.AboutMeFragment"
+        android:label="About me"
+        tools:layout="@layout/fragment_about_me">
         <action
             android:id="@+id/action_aboutMeFragment_to_newsFeedFragment2"
             app:destination="@id/newsFeedFragment2" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.avatarwikiapplication.ProfileFragment"
+        android:name="com.example.avatarwikiapplication.view.main.navigation.ProfileFragment"
         android:label="My Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.avatarwikiapplication.view.SettingsFragment"
+        android:name="com.example.avatarwikiapplication.view.main.navigation.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settingsFragment_to_newsFeedFragment2"
             app:destination="@id/newsFeedFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/logOutFragment"
+        android:name="com.example.avatarwikiapplication.view.main.navigation.LogOutFragment"
+        android:label="fragment_log_out"
+        tools:layout="@layout/fragment_log_out" />
+    <fragment
+        android:id="@+id/characterDetailFragment"
+        android:name="com.example.avatarwikiapplication.view.main.CharacterDetailFragment"
+        android:label="{name}"
+        tools:layout="@layout/character_detail_fragment" >
+        <action
+            android:id="@+id/action_characterDetailFragment_to_charactersFragment"
+            app:destination="@id/charactersFragment" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            />
+        <argument
+            android:name="character"
+            app:argType="com.example.avatarwikiapplication.model.CharactersItem" />
     </fragment>
 </navigation>

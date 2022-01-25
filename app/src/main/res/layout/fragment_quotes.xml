@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.QuotesFragment">
+    android:background="@color/main_c"
+    tools:context=".view.main.QuotesFragment">
 
     <TextView
         android:id="@+id/textView3"
@@ -12,6 +13,8 @@
         android:layout_height="wrap_content"
 
         android:text="@string/sample_quote"
+        android:textAlignment="center"
+        android:textColor="@color/earth_nation"
         android:textSize="18sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"

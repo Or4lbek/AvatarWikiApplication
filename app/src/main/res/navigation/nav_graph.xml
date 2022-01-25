@@ -6,7 +6,7 @@
     app:startDestination="@id/newsFeedFragment">
     <fragment
         android:id="@+id/newsFeedFragment"
-        android:name="com.example.avatarwikiapplication.view.NewsFeedFragment"
+        android:name="com.example.avatarwikiapplication.view.main.NewsFeedFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" >
         <action

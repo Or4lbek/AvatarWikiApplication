@@ -1,18 +1,14 @@
-package com.example.avatarwikiapplication.view
+package com.example.avatarwikiapplication.view.main
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.avatarwikiapplication.R
-import com.example.avatarwikiapplication.databinding.FragmentCharactersBinding
-import com.example.avatarwikiapplication.databinding.FragmentWriteDataBinding
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
+import com.example.avatarwikiapplication.R
+import com.example.avatarwikiapplication.databinding.FragmentWriteDataBinding
 import com.example.avatarwikiapplication.model.CustomerRecord
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -20,14 +16,13 @@ import com.google.firebase.database.FirebaseDatabase
 
 class WriteDataFragment : Fragment(R.layout.fragment_write_data) {
 
-    private var _binding: FragmentWriteDataBinding?= null
+    private var _binding: FragmentWriteDataBinding? = null
     private val binding get() = _binding!!
 
     // firebase property
     private lateinit var mDatabase: DatabaseReference
     private val USER_KEY: String = "User"
-    private lateinit var mail:String
-
+    private lateinit var mail: String
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,7 +32,7 @@ class WriteDataFragment : Fragment(R.layout.fragment_write_data) {
 
     }
 
-    private fun init(){
+    private fun init() {
 
         (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
@@ -51,12 +46,24 @@ class WriteDataFragment : Fragment(R.layout.fragment_write_data) {
         )
 
         binding.buttonClose.setOnClickListener {
+            binding.editTextNewRecord.clearFocus()
+//            (activity as MainActivity).window
+//                .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+//            ((activity as MainActivity).getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).showSoftInput(
+//                binding.editTextNewRecord,
+//                0
+//            )
             (activity as MainActivity).setBottomAppBarForHome()
         }
 
-        binding.buttonSendData.setOnClickListener{
-            if (binding.editTextNewRecord.text.toString().isNotEmpty()){
-                saveCustomerRecord(mDatabase.key.toString(), mail,binding.editTextNewRecord.text.toString())
+        binding.buttonSendData.setOnClickListener {
+            if (binding.editTextNewRecord.text.toString().isNotEmpty()) {
+                saveCustomerRecord(
+                    mDatabase.key.toString(),
+                    mail,
+                    binding.editTextNewRecord.text.toString()
+                )
+                binding.editTextNewRecord.clearFocus()
                 (activity as MainActivity).setBottomAppBarForHome()
             }
         }
@@ -75,7 +82,6 @@ class WriteDataFragment : Fragment(R.layout.fragment_write_data) {
     }
 
 
-
     // to avoid memory leak
     override fun onDestroy() {
         super.onDestroy()
@@ -92,12 +98,11 @@ class WriteDataFragment : Fragment(R.layout.fragment_write_data) {
         mDatabase.push().setValue(newCustomerRecord)
     }
 
-    private fun addConditionEditTextData(){
-        binding.editTextNewRecord.doOnTextChanged{text, start, before, count ->
-            if (text!!.isEmpty()){
+    private fun addConditionEditTextData() {
+        binding.editTextNewRecord.doOnTextChanged { text, start, before, count ->
+            if (text!!.isEmpty()) {
                 binding.textInputLayoutForTextField.error = getString(R.string.need_more_8)
-            }
-            else{
+            } else {
                 binding.textInputLayoutForTextField.error = null
             }
         }

@@ -1,31 +1,29 @@
-package com.example.avatarwikiapplication.view
+package com.example.avatarwikiapplication.view.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.avatarwikiapplication.model.CustomerRecord
 import com.example.avatarwikiapplication.R
-import com.example.avatarwikiapplication.RecordAdapter
 import com.example.avatarwikiapplication.databinding.FragmentNewsBinding
+import com.example.avatarwikiapplication.model.CustomerRecord
+import com.example.avatarwikiapplication.view.adapters.RecordAdapter
 import com.google.firebase.database.*
-import kotlin.collections.ArrayList
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class NewsFeedFragment : Fragment(R.layout.fragment_news) {
 
-    private var binding: FragmentNewsBinding?= null
+    private var binding: FragmentNewsBinding? = null
     private val adapter = RecordAdapter()
-    private var USER_KEY:String = "User"
+    private var USER_KEY: String = "User"
     private lateinit var mDatabase: DatabaseReference
+
     // my list
-    lateinit var newRecords:ArrayList<CustomerRecord>
+    lateinit var newRecords: ArrayList<CustomerRecord>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,15 +32,15 @@ class NewsFeedFragment : Fragment(R.layout.fragment_news) {
         // Inflate the layout for this fragment
         binding = FragmentNewsBinding.inflate(inflater, container, false)
         return binding!!.root
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        (activity as MainActivity).binding.drawerLayout.isDrawerVisible()
-//        actionBar!!.title = "News"
+
         init()
+        if (newRecords.isEmpty()) {
+            binding?.progressBar?.visibility = View.VISIBLE
+        }
         getDataFromDB()
     }
 
@@ -50,15 +48,18 @@ class NewsFeedFragment : Fragment(R.layout.fragment_news) {
         @JvmStatic
         fun newInstance() = NewsFeedFragment()
     }
-    private fun init(){
 
+    private fun init() {
+        if ((activity as MainActivity).btnAppBar.visibility == View.GONE) {
+            (activity as MainActivity).setBottomAppBarForHome()
+        }
         newRecords = ArrayList<CustomerRecord>()
         binding?.apply {
             recyclerViewRecords.layoutManager = LinearLayoutManager(activity)
             recyclerViewRecords.adapter = adapter
 
-            adapter.setOnItemClickListener(object : RecordAdapter.onItemClickListener{
-                override fun onItemClick(position:Int){
+            adapter.setOnItemClickListener(object : RecordAdapter.onItemClickListener {
+                override fun onItemClick(position: Int) {
 
 //                    var oneItemRecord:CustomerRecord = newRecords[position]
 //                    var fragment:Fragment = RecordDetailFragment.newInstance(oneItemRecord.mail,oneItemRecord.newRecord)
@@ -74,11 +75,12 @@ class NewsFeedFragment : Fragment(R.layout.fragment_news) {
     }
 
     private fun loadDB(): ValueEventListener {
-        val vListener = object : ValueEventListener{
+        val vListener = object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 updateRecords(snapshot)
             }
+
             override fun onCancelled(error: DatabaseError) {
             }
         }
@@ -87,22 +89,23 @@ class NewsFeedFragment : Fragment(R.layout.fragment_news) {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun updateRecords(snapshot: DataSnapshot) {
-        if (newRecords.size > 0 ){
+        if (newRecords.size > 0) {
             newRecords.clear()
         }
-        for (ds in snapshot.children){
+        for (ds in snapshot.children) {
             //ds.child("id").value as String
-            var customerId:String = "1"
-            var customerMail:String = ds.child("mail").value as String
-            var customerRecord:String = ds.child("newRecord").value as String
-            var newRecord: CustomerRecord = CustomerRecord(customerId,customerMail,customerRecord)
-            newRecords.add(0,newRecord)
+            val customerId: String = "1"
+            val customerMail: String = ds.child("mail").value as String
+            val customerRecord: String = ds.child("newRecord").value as String
+            val newRecord: CustomerRecord = CustomerRecord(customerId, customerMail, customerRecord)
+            newRecords.add(0, newRecord)
         }
+        binding?.progressBar?.visibility = View.GONE
         adapter.records = newRecords
         adapter.notifyDataSetChanged()
     }
 
-    private fun getDataFromDB(){
+    private fun getDataFromDB() {
         mDatabase.addValueEventListener(loadDB())
     }
 

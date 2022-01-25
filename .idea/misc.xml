@@ -4,11 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable-v24/ic_baseline_android_24.xml" value="0.1453125" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable-v24/ic_change.xml" value="0.2574074074074074" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable-v24/ic_quote.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable-v24/ic_search.xml" value="0.1453125" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable-v24/ic_share.xml" value="0.2574074074074074" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable-v24/outline_close_24.xml" value="0.2361111111111111" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable-v24/white_bcg.xml" value="0.2574074074074074" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable/back.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable/custom_email_icon.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable/custom_lock_icon.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable/ic_air.xml" value="0.25277777777777777" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable/ic_arrow.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable/ic_baseline_create_24.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.14322916666666666" />
@@ -19,20 +24,26 @@
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable/ic_lock_focused.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable/ic_login.xml" value="0.14322916666666666" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable/ic_logout.xml" value="0.14322916666666666" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable/shadow_effect.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/drawable/splash_image.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/activity_login.xml" value="0.2109375" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/activity_registration.xml" value="0.264" />
-        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/character_category_item.xml" value="0.264" />
-        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_about_me.xml" value="0.12487335359675786" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/character_category_item.xml" value="0.4" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/character_detail_fragment.xml" value="0.25677083333333334" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/character_record_item.xml" value="0.264" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_about_me.xml" value="0.2906178489702517" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_add_news.xml" value="0.25677083333333334" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_characters.xml" value="0.264" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_log_out.xml" value="0.18704710144927536" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_map.xml" value="0.2" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_news.xml" value="0.264" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_profile.xml" value="0.4" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_quotes.xml" value="0.264" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_record_detail.xml" value="0.264" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_settings.xml" value="0.264" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_sign_in.xml" value="0.264" />
+        <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_sign_up.xml" value="0.264" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/fragment_write_data.xml" value="0.16" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/layout_dialog.xml" value="0.2223731884057971" />
         <entry key="..\:/Users/theor/AndroidStudioProjects/AvatarWikiApplication/app/src/main/res/layout/nav_header.xml" value="0.264" />

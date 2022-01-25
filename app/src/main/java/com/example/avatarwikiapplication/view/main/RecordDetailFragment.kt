@@ -1,12 +1,10 @@
-package com.example.avatarwikiapplication.view
+package com.example.avatarwikiapplication.view.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toolbar
-import com.example.avatarwikiapplication.R
+import androidx.fragment.app.Fragment
 import com.example.avatarwikiapplication.databinding.FragmentRecordDetailBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -18,7 +16,7 @@ private const val ARG_PARAM2 = "param2"
 class RecordDetailFragment : Fragment() {
     // TODO: Rename and change types of parameters
 
-    private var binding:FragmentRecordDetailBinding ?= null
+    private var binding: FragmentRecordDetailBinding? = null
     private var param1: String? = null
     private var param2: String? = null
 

@@ -1,34 +1,31 @@
-package com.example.avatarwikiapplication.view
+package com.example.avatarwikiapplication.view.main
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.*
-import android.widget.EditText
+import android.view.View
 import android.widget.TextView
-import android.widget.Toast
-import androidx.annotation.MenuRes
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.avatarwikiapplication.model.CustomerRecord
 import com.example.avatarwikiapplication.R
 import com.example.avatarwikiapplication.databinding.ActivityMainBinding
+import com.example.avatarwikiapplication.view.Drawer
+import com.example.avatarwikiapplication.view.registration.LoginActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Drawer {
     // bissmiliah
     lateinit var binding: ActivityMainBinding //using view binding
     lateinit var toggle: ActionBarDrawerToggle
@@ -38,43 +35,26 @@ class MainActivity : AppCompatActivity() {
     private lateinit var date: String
     lateinit var navController: NavController
 
-
-
-
     private val USER_KEY: String = "User"
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setTheme(R.style.Theme_AvatarWikiApplication)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
-
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        navController = navHostFragment.findNavController()
-
-
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.newsFeedFragment2, R.id.mapFragment, R.id.quotesFragment
-            ), binding.drawerLayout
-        )
-//            )
-//        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.btnNavView.setupWithNavController(navController)
-
-        binding.navView.setupWithNavController(navController)
-
-
+        setTheme(R.style.Theme_AvatarWikiApplication)
+        initUI()
         init()
         changeHeaderContent()
-//        binding.navView.setNavigationItemSelectedListener(this)
+    }
 
+    private fun initUI() {
+        setToolbar()
+        initBtnNavView()
+    }
 
+    private fun setToolbar() {
+        setSupportActionBar(binding.toolbar)
     }
 
     private fun init() {
@@ -82,49 +62,52 @@ class MainActivity : AppCompatActivity() {
         mDatabase = FirebaseDatabase.getInstance().getReference(USER_KEY)
         // add toggle to Drawer layout
 //
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            if (destination.id == R.id.newsFeedFragment2) {
-                binding.drawerLayout.apply {
-                    supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                    supportActionBar?.setDisplayShowHomeEnabled(true)
-                    setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-                }
-            } else {
-
-                supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                supportActionBar?.setDisplayShowHomeEnabled(false)
-                binding.drawerLayout.apply {
-                    isEnabled = false
-                    setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-                }
-            }
-        }
         toggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.close, R.string.open)
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+//        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+//            if (destination.id == R.id.newsFeedFragment2) {
+//                Log.i("voca", "newsFeed")
+////                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+////                toggle.isDrawerIndicatorEnabled = false
+//            } else {
+//                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+//                toggle.isDrawerIndicatorEnabled = false
+//            }
+//        }
 
         // get intent to define mail address of user
         val intent: Intent = intent
         mail = intent.getStringExtra("mail").toString()
         date = intent.getStringExtra("date").toString()
-        initBtnNavView()
-
     }
 
     private fun initBtnNavView() {
-        binding.fab.setOnClickListener {
-            val navigation =  navController.navigate(R.id.writeDataFragment)
-            binding.btnNavView.menu.getItem(2).isChecked = false
 
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navController = navHostFragment.findNavController()
+
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.newsFeedFragment2, R.id.mapFragment, R.id.quotesFragment
+            ), binding.drawerLayout
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        binding.btnNavView.setupWithNavController(navController)
+        binding.navView.setupWithNavController(navController)
+        binding.fab.setOnClickListener {
+            binding.btnNavView.menu.getItem(2).isChecked = false
+            navController.navigate(R.id.writeDataFragment)
             hideBottomAppBar()
         }
-
         binding.btnNavView.background = null
         binding.btnNavView.menu.getItem(2).isEnabled = false
 
     }
 
-    private fun hideBottomAppBar() {
+    fun hideBottomAppBar() {
         binding.run {
             btnAppBar.performHide()
             // Get a handle on the animator that hides the bottom app bar so we can wait to hide
@@ -139,6 +122,7 @@ class MainActivity : AppCompatActivity() {
                     btnAppBar.visibility = View.GONE
                     fab.visibility = View.INVISIBLE
                 }
+
                 override fun onAnimationCancel(animation: Animator?) {
                     isCanceled = true
                 }
@@ -206,20 +190,13 @@ class MainActivity : AppCompatActivity() {
 //    }
 
     //drawer layout function
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+//    fun onNavigationItemSelected(item: MenuItem): Boolean {
 //        when (item.itemId) {
 //            R.id.log_out -> {
 //                Toast.makeText(this, "log out", Toast.LENGTH_SHORT).show()
 //                onClickLogOut()
 //            }
-//            R.id.aboutMeFragment -> {
-////                Toast.makeText(this@MainActivity, "item3", Toast.LENGTH_SHORT).show()
-////                NewsFeedFragmentDirections.actionNewsFeedFragmentTo
-////                NewsFeedFragmentDirections.action
-////                NewsFeedFragmentDirections.action
-////                NewsFeedFragmentDirections.actionNewsFedFragmentToRecordDetailFragment()
 //
-//            }
 //        }
 //        return true
 //    }
@@ -232,27 +209,24 @@ class MainActivity : AppCompatActivity() {
         return date
     }
 
-    private fun onClickLogOut() {
+    fun onClickLogOut() {
         val newIntent: Intent = Intent(applicationContext, LoginActivity::class.java)
         newIntent.putExtra("time", 1)
         startActivity(newIntent)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)) {
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onSupportNavigateUp(): Boolean {
-
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-//    override fun onBackPressed(){
-//        navController.navigate(R.id.newsFeedFragment2)
-//    }
+    override fun lockDrawer() {
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    }
 
+    override fun unlockDrawer() {
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
 
 }

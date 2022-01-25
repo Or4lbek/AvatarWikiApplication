@@ -6,23 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".view.RecordDetailFragment">
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:id="@+id/app_bar_layout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
+    <!--    <com.google.android.material.appbar.AppBarLayout-->
+    <!--        android:id="@+id/app_bar_layout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
 
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/app_bar"-->
-<!--            style="@style/FoxAndroid.Toolbar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="?attr/actionBarSize"-->
-<!--            app:navigationIcon="@drawable/ic_arrow">-->
+    <!--        <androidx.appcompat.widget.Toolbar-->
+    <!--            android:id="@+id/app_bar"-->
+    <!--            style="@style/FoxAndroid.Toolbar"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="?attr/actionBarSize"-->
+    <!--            app:navigationIcon="@drawable/ic_arrow">-->
 
-<!--        </androidx.appcompat.widget.Toolbar>-->
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
+    <!--        </androidx.appcompat.widget.Toolbar>-->
+    <!--    </com.google.android.material.appbar.AppBarLayout>-->
 
 
     <TextView
