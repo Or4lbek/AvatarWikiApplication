@@ -78,5 +78,7 @@ region, Kaskelen city.</string>
     <string name="image_for_shadow_effect">image for shadow effect</string>
     <string name="naruto">Naruto</string>
     <string name="logo">logo</string>
+    <string name="allies">Allies:</string>
+    <string name="enemies">Enemies:</string>
 
 </resources>

@@ -11,7 +11,7 @@ data class CharactersItem(
     val allies: List<String>,
     val enemies: List<String>,
     val name: String?,
-    val photoUrl: String
+    val photoUrl: String?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -19,7 +19,7 @@ data class CharactersItem(
         parcel.createStringArrayList()!!,
         parcel.createStringArrayList()!!,
         parcel.readString(),
-        parcel.readString()!!
+        parcel.readString()
     ) {
     }
 

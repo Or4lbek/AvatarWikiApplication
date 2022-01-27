@@ -4,14 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_c"
     tools:context=".view.main.CharactersFragment">
-
-    <!--    &lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;-->
-    <!--    <TextView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:text="Characters"-->
-    <!--        android:gravity="center"/>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCharacterCategory"

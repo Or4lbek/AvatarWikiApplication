@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.avatarwikiapplication.R
 import com.example.avatarwikiapplication.databinding.FragmentCharactersBinding
 import com.example.avatarwikiapplication.model.CharacterCategory
@@ -26,10 +27,13 @@ class CharactersFragment : Fragment(R.layout.fragment_characters),
     var newCategories: ArrayList<CharacterCategory> = ArrayList()
     private val categoryAdapter = CategoryAdapter(this)
 
-    var charactersList: ArrayList<CharactersItem> = ArrayList()
+    private var charactersList: ArrayList<CharactersItem> = ArrayList()
     lateinit var charactersAdapter: CharactersAdapter
     private lateinit var linearLayoutManager: GridLayoutManager
     lateinit var viewModel: CharactersViewModel
+
+    private var page = 0
+    private var limit = 24
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,6 +65,26 @@ class CharactersFragment : Fragment(R.layout.fragment_characters),
             binding.progressBarCharacter.visibility = View.VISIBLE
             initViewModel()
         }
+
+        binding.recyclerViewCharacters.addOnScrollListener(object :
+            RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val visibleItemCount = linearLayoutManager.childCount
+                val postVisibleItem = linearLayoutManager.findFirstCompletelyVisibleItemPosition()
+                val total = charactersAdapter.itemCount
+
+                if (!viewModel.isLoading) {
+                    if (visibleItemCount + postVisibleItem >= total) {
+                        if (page < limit) {
+                            page++
+                        }
+                        viewModel.makeApiCall(page)
+                    }
+                }
+            }
+        })
     }
 
     @SuppressLint("NotifyDataSetChanged", "FragmentLiveDataObserve")
@@ -79,7 +103,10 @@ class CharactersFragment : Fragment(R.layout.fragment_characters),
                     .show()
             }
         })
-        viewModel.makeApiCall()
+        if (page < limit) {
+            page++
+        }
+        viewModel.makeApiCall(page)
     }
 
     private fun updateRecords() {
@@ -130,7 +157,6 @@ class CharactersFragment : Fragment(R.layout.fragment_characters),
     }
 
     override fun OnItemNoteCategoryListener(position: Int) {
-        Toast.makeText(context, "this is position: " + position, Toast.LENGTH_SHORT).show()
         if (position == 1) {
             viewModel.makeApiCallForFireNationCharacters()
         }

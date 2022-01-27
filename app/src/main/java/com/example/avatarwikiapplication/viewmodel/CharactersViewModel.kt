@@ -12,17 +12,20 @@ import kotlinx.coroutines.launch
 class CharactersViewModel : ViewModel() {
 
     private var liveDataList: MutableLiveData<List<CharactersItem>> = MutableLiveData()
+    var isLoading = false
 
     fun getLiveDataObserver(): MutableLiveData<List<CharactersItem>> {
         return liveDataList
     }
 
-    fun makeApiCall() {
+    fun makeApiCall(page: Int) {
+        isLoading = true
         viewModelScope.launch(Dispatchers.IO) {
             val retroInstance = RetroInstance.getRetrofitInstance()
             val retroService = retroInstance.create(RetroServiceInterface::class.java)
-            val call = retroService.getCharacters()
+            val call = retroService.getCharacters(page)
             liveDataList.postValue(call)
+            isLoading = false
         }
     }
 
